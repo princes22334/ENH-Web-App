@@ -22,6 +22,7 @@ public class EmployeeDto {
     private String email;
     private String department;
     private String employeeNumber;
+    private String status;
     private String phoneNumber;
     private String CompanyName;
     private Set<AccessDto> accesses;

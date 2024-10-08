@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AccessDto {
 
+    private Long id;
     private String accessName;
     private String roleCompany;
 }

@@ -15,14 +15,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
                 version = "1.0",
                 description = "API Documentation",
                 contact = @Contact(
-                        name = "ENHisecure",
+                        name = "ENHiSecure",
                         url = "https://www.enhisecure.com/",
                         email = "isecure@enhisecure.com"
                 )
         ),
         security = {
                 @SecurityRequirement(
-                        name = "Basic Authentication"
+                        name = "Basic Auth"
                 )
         },
         servers = {

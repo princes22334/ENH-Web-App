@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #1e1e1e; /* Dark background */
+      background-color: #152b3b; /* Dark background */
       color: #ffffff; /* White text */
       margin: 0;
       padding: 0;
@@ -20,11 +20,12 @@
     .container {
       text-align: center;
     }
-    .logo {
-      font-size: 3em;
+    .logo { /* Style the text logo "ENHiSecure" */
+      font-size: 4em; /* Increase font size for a larger logo */
       font-weight: bold;
-      color: #00ff00; /* Bright green color */
+      color: #00aced; /* Cyan color */
       margin-bottom: 20px;
+      font-family: 'YourCompanyFont', sans-serif; /* Replace with your company's font */
     }
     h1 {
       font-size: 2em;
@@ -45,24 +46,43 @@
       text-decoration: underline;
     }
     .note {
-      font-size: 1em;
+      font-size: 0.8em; /* Decrease font size */
       color: #ffcc00; /* Yellow color */
+      background-color: #333333; /* Darker background for the box */
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: center;
+      border: 2px solid #ff0059; /* Yellow border */
+    }
+    .logo-image { /* Hide the logo image (optional) */
+      display: none;
+    }
+    footer {
       position: absolute;
-      bottom: 20px;
+      bottom: 0;
       width: 100%;
       text-align: center;
+      padding: 10px 0;
+      background-color: #152b3b; /* Match the body background */
+      color: #ffffff;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
 <div class="container">
-  <div class="logo">ENHiSecure</div>
-  <h1>Web-App</h1>
+  <h1 class="logo">ENHîSecure</h1> <h1>Web-App</h1>
   <p class="highlight">To see all available APIs and their endpoints, follow this link:</p>
   <a href="http://localhost:8080/swagger-ui/index.html#/">
     http://localhost:8080/swagger-ui/index.html#/
   </a>
+  <div class="note">
+    If the above link is not working, change the localhost:8080 with your server IP address and port.
+  </div>
 </div>
-<p class="note">If the above link is not working, change the localhost:8080 with your server IP address and port.</p>
+<footer>
+  ENHiSecure all rights are reserved.
+</footer>
 </body>
 </html>

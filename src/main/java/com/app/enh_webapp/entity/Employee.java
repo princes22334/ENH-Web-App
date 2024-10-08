@@ -37,6 +37,9 @@ public class Employee {
     @Column(name = "employee_number")
     private String employeeNumber;
 
+   @Column(name = "active")
+    private String status;
+
     @Column(name = "phone_number")
     private String phoneNumber;
 

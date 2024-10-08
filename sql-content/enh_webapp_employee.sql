@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `enh_webapp` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `enh_webapp`;
 -- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
 -- Host: localhost    Database: enh_webapp
@@ -34,13 +32,14 @@ CREATE TABLE `employee` (
   `last_name` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
+  `active` varchar(255) DEFAULT NULL,
   `company_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKfopic1oh5oln2khj8eat6ino0` (`email`),
   UNIQUE KEY `UKhafqwjqe2e9bcpgyj6evm52ap` (`name`),
   KEY `FK18unkc07agjyg32xcdnbd0mc2` (`company_id`),
   CONSTRAINT `FK18unkc07agjyg32xcdnbd0mc2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +48,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'ENHisecure-Banglore','Science','bruce.banner@avengers.com','HK005','Bruce','Banner','Hulk','+1-555-0105',2),(2,'ENHisecure-Banglore','Espionage','clint.barton@shield.com','HE006','Clint','Barton','Hawkeye','+1-555-0106',2),(3,'ENHisecure-Banglore','Photography','peter.parker@dailybugle.com','SM007','Peter','Parker','SpiderMan','+1-555-0107',2),(4,'ENHisecure-Banglore','Leadership','tchalla.udaku@wakanda.com','BP008','T\'Challa','Udaku','BlackPanther','+1-555-0108',2),(5,'ENHisecure-Banglore','Mystic Arts','stephen.strange@sanctum.com','DS009','Stephen','Strange','DoctorStrange','+1-555-0109',2),(6,'ENHisecure-Banglore','Mystic Arts','wanda.maximoff@avengers.com','SW010','Wanda','Maximoff','ScarletWitch','+1-555-0110',2);
+INSERT INTO `employee` VALUES (1,'ENHisecure-New York','Marketing','jane.smith@example.com','E012','Jane','Smith','Jane Smith','555-6789','Active',3),(2,'ENHisecure-Hyderabad','R&D','jack.anderson@example.com','E010','Jack','Anderson','Jack Anderson','555-0987','Inactive',1),(3,'ENHisecure-Hyderabad','HR','alice.johnson@example.com','E001','Alice','Johnson','Alice Johnson','555-1234','Active',1),(4,'ENHisecure-Hyderabad','Finance','bob.smith@example.com','E002','Bob','Smith','Bob Smith','555-5678','Active',1),(6,'ENHisecure-Hyderabad','Marketing','david.brown@example.com','E004','David','Brown','David Brown','555-4321','Inactive',1),(7,'ENHisecure-Hyderabad','Sales','eve.davis@example.com','E005','Eve','Davis','Eve Davis','555-6789','Active',1),(8,'ENHisecure-Hyderabad','Support','frank.miller@example.com','E006','Frank','Miller','Frank Miller','555-9876','Inactive',1),(9,'ENHisecure-Hyderabad','IT','grace.wilson@example.com','E007','Grace','Wilson','Grace Wilson','555-3456','Active',1),(10,'ENHisecure-Hyderabad','Legal','henry.moore@example.com','E008','Henry','Moore','Henry Moore','555-6543','Inactive',1),(11,'ENHisecure-Hyderabad','Operations','ivy.taylor@example.com','E009','Ivy','Taylor','Ivy Taylor','555-7890','Active',1),(12,'ENHisecure-Banglore','HR','alice.smith@example.com','E001','Alice','Smith','Alice Smith','555-1234','Active',2),(13,'ENHisecure-Banglore','Finance','bob.johnson@example.com','E002','Bob','Johnson','Bob Johnson','555-5678','Inactive',2);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -62,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-06 21:17:44
+-- Dump completed on 2024-10-08 11:45:14

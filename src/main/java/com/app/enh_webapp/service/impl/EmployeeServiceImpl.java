@@ -59,6 +59,32 @@ public class EmployeeServiceImpl implements EmployeeService {
         return convertToDto(employee);
     }
 
+    @Override
+    public EmployeeDto updateEmployeeById(Long id, EmployeeDto dto) {
+       Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Invalid Input! Employee Id doesn't Exist"));
+
+        employee.setId(dto.getId());
+        employee.setFirstName(dto.getFirstName());
+        employee.setLastName(dto.getLastName());
+        employee.setDepartment(dto.getDepartment());
+        employee.setEmployeeNumber(dto.getEmployeeNumber());
+        employee.setName(dto.getName());
+        employee.setEmail(dto.getEmail());
+        employee.setStatus(dto.getStatus());
+        employee.setPhoneNumber(dto.getPhoneNumber());
+
+        Employee updatedEmployee = employeeRepository.save(employee);
+        return convertToDto(updatedEmployee);
+    }
+
+    @Override
+    public void deleteEmployeeById(Long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Invalid Input! Employee Id doesn't Exist"));
+        employeeRepository.deleteById(id);
+    }
+
 
     public EmployeeDto convertToDto(Employee employee){
         return modelMapper.map(employee, EmployeeDto.class);

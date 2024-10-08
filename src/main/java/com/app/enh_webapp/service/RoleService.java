@@ -8,5 +8,11 @@ public interface RoleService {
 
     RoleDto createRole(Long companyId, RoleDto dto);
 
-    List<RoleDto> getAllRoles();
+    List<RoleDto> getAllRoles(int pageNo, int pageSize);
+
+    RoleDto getRoleById(Long roleId);
+
+    RoleDto updateRoleById(Long roleId, RoleDto dto);
+
+    void deleteRoleById(Long roleId);
 }

@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
         response.setTimeStamp(new Date());
         response.setMessage(exception.getMessage());
         response.setDetails(webRequest.getDescription(false));
-        response.setStatus(HttpStatus.NOT_FOUND.value());
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        response.setStatus(HttpStatus.BAD_REQUEST.value());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }

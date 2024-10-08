@@ -12,9 +12,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableMethodSecurity
 @SecurityScheme(
-        name = "Basic Authentication",
+        name = "Basic Auth",
         type = SecuritySchemeType.HTTP,
-        bearerFormat = "Basic",
         scheme = "basic"
 )
 public class SecurityConfig {
@@ -22,8 +21,11 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }
 }
+

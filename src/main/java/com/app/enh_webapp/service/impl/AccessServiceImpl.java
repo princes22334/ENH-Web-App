@@ -10,6 +10,7 @@ import com.app.enh_webapp.repository.AccessRepository;
 import com.app.enh_webapp.repository.CompanyRepository;
 import com.app.enh_webapp.repository.EmployeeRepository;
 import com.app.enh_webapp.repository.RoleRepository;
+import com.app.enh_webapp.service.AccessService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +37,7 @@ public class AccessServiceImpl implements AccessService {
     public AccessDto createAccessForEmployeeById(Long id, AccessDto dto) {
         // Check if Employee is present or not
         Employee employee = employeeRepository
-                .findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee Id doesn't exist"));
+                .findById(id).orElseThrow(() -> new ResourceNotFoundException("Invalid input! Employee Id doesn't exist"));
 
         // Retrieving all roles to check
         List<Role> roles = roleRepository.findAll();
@@ -51,7 +52,6 @@ public class AccessServiceImpl implements AccessService {
                         break;
                     }
                 }
-
                 if (accessExists) {
                     throw new ResourceNotFoundException("Access is already present with Employee " + employee.getName());
                 } else {
@@ -66,10 +66,28 @@ public class AccessServiceImpl implements AccessService {
                 }
             }
         }
-        throw new ResourceNotFoundException("Given Access doesn't exist");
+        throw new ResourceNotFoundException("Invalid Input! Given Access Detail doesn't exist");
     }
 
-//    public AccessDto convertToDto(Access access) {
+    @Override
+    public void removeAccessForEmployeeById(Long employeeId, Long accessId) {
+        // Check if Employee is present or not
+        Employee employee = employeeRepository
+                .findById(employeeId).orElseThrow(() -> new ResourceNotFoundException("Invalid Input! Employee Id doesn't exist"));
+
+        //check if access is present or not
+        Access access = accessRepository.findById(accessId)
+                .orElseThrow(() -> new ResourceNotFoundException("Invalid Input! Access id doesn't Exist"));
+
+        //check if access id matched with employee
+        if (!(access.getEmployee().getId().equals(employee.getId()))) {
+            throw new ResourceNotFoundException("Invalid input! Provided Access "+access.getAccessName()+" doesn't belong to Employee "+employee.getName());
+        }
+        accessRepository.deleteById(accessId);
+    }
+
+
+    //    public AccessDto convertToDto(Access access) {
 //        AccessDto dto = new AccessDto();
 //        dto.setAccessName(access.getAccessName());
 //        //dto.setEmployeeName(access.getEmployeeName());

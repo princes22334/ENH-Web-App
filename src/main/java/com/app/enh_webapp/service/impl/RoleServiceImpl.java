@@ -8,6 +8,9 @@ import com.app.enh_webapp.repository.CompanyRepository;
 import com.app.enh_webapp.repository.RoleRepository;
 import com.app.enh_webapp.service.RoleService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,9 +39,35 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<RoleDto> getAllRoles() {
-        List<Role> roles = roleRepository.findAll();
+    public List<RoleDto> getAllRoles(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        Page<Role> roles = roleRepository.findAll(pageable);
        return roles.stream().map(role -> convertToDto(role)).collect(Collectors.toList());
+    }
+
+    @Override
+    public RoleDto getRoleById(Long roleId) {
+       Role role = roleRepository.findById(roleId).orElseThrow(() -> new ResourceNotFoundException("Invalid Input! Role id doesn't Exist"));
+        return convertToDto(role);
+    }
+
+    @Override
+    public RoleDto updateRoleById(Long roleId, RoleDto dto) {
+       Role role = roleRepository.findById(roleId)
+                .orElseThrow(() -> new ResourceNotFoundException("Invalid Input! Role id doesn't Exist"));
+        role.setId(dto.getId());
+        role.setTechnicalName(dto.getRoleName());
+        role.setRoleName(dto.getRoleName());
+        role.setDescription(dto.getDescription());
+      Role savedRole =  roleRepository.save(role);
+        return convertToDto(savedRole);
+    }
+
+    @Override
+    public void deleteRoleById(Long roleId) {
+        roleRepository.findById(roleId)
+                .orElseThrow(() -> new ResourceNotFoundException("Invalid Input! Role id doesn't Exist"));
+        roleRepository.deleteById(roleId);
     }
 
     public RoleDto convertToDto(Role role){

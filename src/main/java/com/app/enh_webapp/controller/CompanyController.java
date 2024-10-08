@@ -30,7 +30,7 @@ public class CompanyController {
 
     @GetMapping("/companies")
     public ResponseEntity<List<CompanyDto>> getAllCompany(@RequestParam(defaultValue = "0", required = false) int pageNo,
-                                                          @RequestParam(defaultValue = "0", required = false) int pageSize){
+                                                          @RequestParam(defaultValue = "10", required = false) int pageSize){
         return new ResponseEntity<>(companyService.getAllCompany(pageNo, pageSize), HttpStatus.OK);
     }
 
